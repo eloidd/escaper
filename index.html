@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div style="display: flex; flex-direction: column; align-items: center">
+      <input
+        autofocus
+        style="margin-top: 6em; font-size: 2em; width: 90%; height: 2em; padding: 1em; border-radius: 1em"
+        oninput="onInput(this)"
+        id="ind"
+      />
+      <p
+        style="
+          margin-top: 2em;
+          white-space: pre-wrap;
+          word-break: break-all;
+          font-size: 2.5em;
+          width: 90%;
+          min-height: 2em;
+          padding: 1em;
+          border-radius: 1em;
+          background-color: #ebf5fb;
+        "
+        id="outd"
+     ></p>
+    <script>
+      const onInput = (el) => {
+        outd.innerHTML = escape(el.value);
+        var select = window.getSelection();
+        var range  = document.createRange();
+        
+        range.selectNodeContents(outd);
+        select.addRange(range);
+        console.log(outd)
+        console.log(select.toString())
+      };
+      const symbolsToEscape = [
+        "+",
+        "-",
+        "&&",
+        "||",
+        "!",
+        "(",
+        ")",
+        "{",
+        "}",
+        "[",
+        "]",
+        "^",
+        "'",
+        '"',
+        "~",
+        "*",
+        "?",
+        ":",
+        "/",
+        " ",
+        "\\",
+      ];
+      const escape = (str) =>
+        str.split("").reduce((strOut, char) => strOut + (symbolsToEscape.includes(char) ? "\\" + char : char), "");
+    </script>
+  </body>
+</html>
