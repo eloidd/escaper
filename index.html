@@ -25,13 +25,6 @@
     <script>
       const onInput = (el) => {
         outd.innerHTML = escape(el.value);
-        var select = window.getSelection();
-        var range  = document.createRange();
-        
-        range.selectNodeContents(outd);
-        select.addRange(range);
-        console.log(outd)
-        console.log(select.toString())
       };
       const symbolsToEscape = [
         "+",
