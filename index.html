@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <div style="display: flex; flex-direction: column; align-items: center">
-      <input
-        autofocus
-        style="margin-top: 6em; font-size: 2em; width: 90%; height: 2em; padding: 1em; border-radius: 1em"
-        oninput="onInput(this)"
-        id="ind"
-      />
-      <p
-        style="
+
+<body>
+  <div style="display: flex; flex-direction: column; align-items: center">
+    <input autofocus style="margin-top: 6em; font-size: 2em; width: 90%; height: 2em; padding: 1em; border-radius: 1em"
+      oninput="onInput(this)" id="ind" />
+    <p style="
           margin-top: 2em;
           white-space: pre-wrap;
           word-break: break-all;
@@ -19,14 +15,13 @@
           padding: 1em;
           border-radius: 1em;
           background-color: #ebf5fb;
-        "
-        id="outd"
-     ></p>
+        " id="outd"></p>
     <script>
       const onInput = (el) => {
         outd.innerHTML = escape(el.value);
       };
       const symbolsToEscape = [
+        "\\",
         "+",
         "-",
         "&&",
@@ -47,10 +42,9 @@
         ":",
         "/",
         " ",
-        "\\",
       ];
-      const escape = (str) =>
-        str.split("").reduce((strOut, char) => strOut + (symbolsToEscape.includes(char) ? "\\" + char : char), "");
+      const escape = str => symbolsToEscape.reduce((strOut, sym) => strOut.replaceAll(sym, '\\$&'), str);
     </script>
-  </body>
+</body>
+
 </html>
